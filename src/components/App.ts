@@ -136,6 +136,18 @@ function clearChildren(node: HTMLElement) {
   while (node.firstChild) node.removeChild(node.firstChild);
 }
 
+function createBadge(type: 'level' | 'streak' | 'xp', value: string): HTMLElement {
+  const icons: Record<string, string> = { level: '', streak: '🔥 ', xp: '⚡ ' };
+  const classNames: Record<string, string> = { level: 'level-badge', streak: 'streak-badge', xp: 'xp-badge' };
+  return el('span', { className: classNames[type], text: icons[type] + value });
+}
+
+function createProgressBar(percent: number, style?: string): HTMLElement {
+  const bar = el('div', { className: 'progress-bar', style: style || '' });
+  bar.appendChild(el('div', { className: 'progress-bar-fill', style: 'width:' + percent + '%' }));
+  return bar;
+}
+
 function settingsIconSvg(): SVGElement {
   const svgNS = 'http://www.w3.org/2000/svg';
   const svg = document.createElementNS(svgNS, 'svg');
@@ -332,12 +344,11 @@ class InnoWordsApp {
     topRow.appendChild(titleBox); topRow.appendChild(settingsBtn);
 
     const badges = el('div', { style: 'display:flex; gap:8px; flex-wrap:wrap;' });
-    badges.appendChild(el('span', { className: 'level-badge', text: 'Lv.' + this.state.level }));
-    badges.appendChild(el('span', { className: 'streak-badge', text: '🔥 ' + this.state.streak + ' ' + t.streakDays }));
-    badges.appendChild(el('span', { className: 'xp-badge', text: '⚡ ' + this.state.xp + '/' + levelXpMax + ' ' + t.xp }));
+    badges.appendChild(createBadge('level', 'Lv.' + this.state.level));
+    badges.appendChild(createBadge('streak', this.state.streak + ' ' + t.streakDays));
+    badges.appendChild(createBadge('xp', this.state.xp + '/' + levelXpMax + ' ' + t.xp));
 
-    const progressBar = el('div', { className: 'progress-bar', style: 'margin-top:10px;' });
-    progressBar.appendChild(el('div', { className: 'progress-bar-fill', style: 'width:' + xpPercent + '%' }));
+    const progressBar = createProgressBar(xpPercent, 'margin-top:10px;');
 
     header.appendChild(topRow);
     header.appendChild(badges);
@@ -470,9 +481,7 @@ class InnoWordsApp {
     progressLabels.appendChild(el('span', { text: t.progress + ': ' + Math.round((this.flashcardIndex / this.flashcardDeck.length) * 100) + '%' }));
     section.appendChild(progressLabels);
 
-    const pBar = el('div', { className: 'progress-bar', style: 'margin-bottom:20px;' });
-    pBar.appendChild(el('div', { className: 'progress-bar-fill', style: 'width:' + (this.flashcardIndex / this.flashcardDeck.length) * 100 + '%' }));
-    section.appendChild(pBar);
+    section.appendChild(createProgressBar((this.flashcardIndex / this.flashcardDeck.length) * 100, 'margin-bottom:20px;'));
 
     const flashcard = el('div', { className: 'flashcard', attrs: { id: 'flashcard' } });
     const inner = el('div', { className: 'flashcard-inner' });
@@ -562,9 +571,7 @@ class InnoWordsApp {
     progressLabels.appendChild(el('span', { text: t.quizScore + ': ' + this.quizScore }));
     section.appendChild(progressLabels);
 
-    const pBar = el('div', { className: 'progress-bar', style: 'margin-bottom:20px;' });
-    pBar.appendChild(el('div', { className: 'progress-bar-fill', style: 'width:' + (this.quizIndex / this.quizTotal) * 100 + '%' }));
-    section.appendChild(pBar);
+    section.appendChild(createProgressBar((this.quizIndex / this.quizTotal) * 100, 'margin-bottom:20px;'));
 
     const wordCard = el('div', { className: 'card text-center', style: 'padding: 32px 20px; margin-bottom:20px;' });
     wordCard.appendChild(el('p', { text: t.quizQuestion, style: 'font-size:0.85rem; color: var(--color-text-light); margin-bottom:8px;' }));
@@ -637,9 +644,7 @@ class InnoWordsApp {
     section.appendChild(titleBox);
 
     section.appendChild(el('div', { style: 'display:flex; justify-content:space-between; font-size:0.85rem; color: var(--color-text-light); margin-bottom:12px;', children: [el('span', { text: t.matchProgress + ': ' + matchedCount + ' / ' + this.matchPairs.length })] }));
-    const pBar = el('div', { className: 'progress-bar', style: 'margin-bottom:20px;' });
-    pBar.appendChild(el('div', { className: 'progress-bar-fill', style: 'width:' + (matchedCount / this.matchPairs.length) * 100 + '%' }));
-    section.appendChild(pBar);
+    section.appendChild(createProgressBar((matchedCount / this.matchPairs.length) * 100, 'margin-bottom:20px;'));
 
     const grid = el('div', { style: 'display:grid; grid-template-columns: 1fr 1fr; gap:10px;' });
     const wordsCol = el('div', { style: 'display:flex; flex-direction:column; gap:10px;' });
