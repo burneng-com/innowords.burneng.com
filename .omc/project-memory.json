@@ -141,14 +141,20 @@
   "hotPaths": [
     {
       "path": "src/components/App.ts",
-      "accessCount": 6,
-      "lastAccessed": 1777806323115,
+      "accessCount": 13,
+      "lastAccessed": 1777806727320,
       "type": "file"
     },
     {
       "path": "src/data/vocabulary.ts",
       "accessCount": 5,
       "lastAccessed": 1777806321303,
+      "type": "file"
+    },
+    {
+      "path": "src/data/export-import.ts",
+      "accessCount": 5,
+      "lastAccessed": 1777806726759,
       "type": "file"
     },
     {
@@ -176,12 +182,6 @@
       "type": "file"
     },
     {
-      "path": "src/data/export-import.ts",
-      "accessCount": 1,
-      "lastAccessed": 1777805572972,
-      "type": "file"
-    },
-    {
       "path": "src/pages/index.astro",
       "accessCount": 1,
       "lastAccessed": 1777805573025,
@@ -198,6 +198,12 @@
       "accessCount": 1,
       "lastAccessed": 1777805797649,
       "type": "file"
+    },
+    {
+      "path": "src/data",
+      "accessCount": 1,
+      "lastAccessed": 1777806485997,
+      "type": "directory"
     }
   ],
   "userDirectives": []

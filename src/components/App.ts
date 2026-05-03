@@ -15,7 +15,7 @@ const STORAGE_KEYS = {
   LANG: 'innowords_lang'
 };
 
-interface AppState {
+export interface AppState {
   xp: number;
   level: number;
   streak: number;
@@ -882,13 +882,13 @@ class InnoWordsApp {
       if (!file) return;
       try {
         const text = await readFileAsText(file);
-        const imported = importFromCSV(text);
-        if (!imported) {
-          showToast(t.importError, 'info');
+        const { state, errors } = importFromCSV(text);
+        if (!state) {
+          showToast(t.importError + ': ' + errors.join(', '), 'info');
           return;
         }
         if (confirm(t.importConfirm)) {
-          this.state = { ...this.state, ...imported };
+          this.state = { ...this.state, ...state };
           saveState(this.state);
           this.renderHeader();
           this.switchTab(this.currentTab);
