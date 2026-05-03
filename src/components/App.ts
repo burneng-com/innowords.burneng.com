@@ -3,7 +3,7 @@
    All learning modes + gamification + i18n
    ======================================== */
 
-import { vocabularyList, getDailyWords, getRandomWords, type VocabularyItem } from '../data/vocabulary';
+import { vocabularyList, getDailyWords, getRandomWords, type VocabularyItem, type Difficulty } from '../data/vocabulary';
 import { acronymsList, getRandomAcronyms, type AcronymItem } from '../data/acronyms';
 import { getTranslation, type Language } from '../data/i18n';
 import { changelog, bumpVersion, checkNewVersion, formatVersionDate, type ChangelogEntry } from '../data/changelog';
@@ -364,13 +364,13 @@ class InnoWordsApp {
     }
   }
 
-  difficultyBg(d: string): string {
+  difficultyBg(d: Difficulty): string {
     if (d === 'easy') return 'var(--color-accent-green)';
     if (d === 'medium') return 'var(--color-accent-orange)';
     return 'var(--color-accent-pink)';
   }
 
-  difficultyLabel(d: string): string {
+  difficultyLabel(d: Difficulty): string {
     const t = this.t();
     if (d === 'easy') return t.easy;
     if (d === 'medium') return t.medium;

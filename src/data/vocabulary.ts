@@ -1,3 +1,5 @@
+export type Difficulty = 'easy' | 'medium' | 'hard';
+
 export interface VocabularyItem {
   id: number;
   word: string;
@@ -6,7 +8,7 @@ export interface VocabularyItem {
   englishMeaning: string;
   exampleSentence: string;
   pronunciationHint: string;
-  difficulty: 'easy' | 'medium' | 'hard';
+  difficulty: Difficulty;
 }
 
 export const vocabularyList: VocabularyItem[] = [
@@ -629,7 +631,7 @@ export function getDailyWords(date: Date = new Date()): VocabularyItem[] {
   return shuffled.slice(0, 5);
 }
 
-export function getWordsForDifficulty(difficulty: string): VocabularyItem[] {
+export function getWordsForDifficulty(difficulty: Difficulty): VocabularyItem[] {
   return vocabularyList.filter(w => w.difficulty === difficulty);
 }
 

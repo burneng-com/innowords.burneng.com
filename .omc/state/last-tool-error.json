@@ -1,7 +1,0 @@
-{
-  "tool_name": "Bash",
-  "tool_input_preview": "{\"command\":\"cat > /Users/eugene/Dropbox/burneng-com/innowords-bruneng-com/e2e/test.js << 'JSEOF'\\n/**\\n * InnoWords E2E Test Suite\\n * Run with: node e2e/test.js\\n */\\n\\n// Mock localStorage for Node....",
-  "error": "Exit code 1\n\n🧪 InnoWords E2E Test Suite\n\n\n────────────────────────────────────────────────────────────\n❌ Build output exists and contains expected elements\n   Error: require is not defined\n❌ Vocabulary data has 50+ words with all required fields\n   Error: require is not defined\n❌ i18n translations are complete (en ↔ zh)\n   Error: require is not defined\n❌ Daily words are deterministic for same date\n   Error: require is not defined\n❌ Changelog has valid entries\n   Error: require is not defined\n❌ ...",
-  "timestamp": "2026-05-03T10:36:52.161Z",
-  "retry_count": 2
-}
