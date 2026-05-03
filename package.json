@@ -11,8 +11,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "deploy": "bun run build && wrangler pages deploy dist --project-name=innowords",
-    "deploy:preview": "bun run build && wrangler pages deploy dist --project-name=innowords --branch=preview",
+    "deploy": "CLOUDFLARE_ACCOUNT_ID=abb8ec8efb3bf663e3a620ac4f1642e1 bun run build && CLOUDFLARE_ACCOUNT_ID=abb8ec8efb3bf663e3a620ac4f1642e1 wrangler pages deploy dist --project-name=innowords",
+    "deploy:preview": "CLOUDFLARE_ACCOUNT_ID=abb8ec8efb3bf663e3a620ac4f1642e1 bun run build && CLOUDFLARE_ACCOUNT_ID=abb8ec8efb3bf663e3a620ac4f1642e1 wrangler pages deploy dist --project-name=innowords --branch=preview",
     "wrangler": "wrangler",
     "cf:login": "wrangler login"
   },
