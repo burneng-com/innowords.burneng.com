@@ -100,6 +100,22 @@ export interface Translations {
   awesome: string;
   greatJob: string;
   keepGoing: string;
+  // Version & Changelog
+  version: string;
+  whatsNew: string;
+  changelogTitle: string;
+  changelogEmpty: string;
+  closeChangelog: string;
+
+  // Export/Import
+  exportData: string;
+  importData: string;
+  exportCSV: string;
+  importCSV: string;
+  importSuccess: string;
+  importError: string;
+  importConfirm: string;
+  exportFileName: string;
 }
 
 export const translations: Record<Language, Translations> = {
@@ -197,7 +213,23 @@ export const translations: Record<Language, Translations> = {
     no: "No",
     awesome: "Awesome!",
     greatJob: "Great Job!",
-    keepGoing: "Keep going!"
+    keepGoing: "Keep going!",
+
+    version: "Version",
+    whatsNew: "What's New",
+    changelogTitle: "Changelog",
+    changelogEmpty: "No changelog entries yet.",
+    closeChangelog: "Close",
+
+    exportData: "Export Data",
+    importData: "Import Data",
+    exportCSV: "Export as CSV",
+    importCSV: "Import from CSV",
+    importSuccess: "Import successful!",
+    importError: "Import failed. Invalid file format.",
+    importConfirm: "This will overwrite your current progress. Continue?",
+    exportFileName: "innowords-progress.csv",
+
   },
   zh: {
     appName: "InnoWords",
@@ -293,7 +325,23 @@ export const translations: Record<Language, Translations> = {
     no: "否",
     awesome: "太棒了！",
     greatJob: "做得好！",
-    keepGoing: "繼續前進！"
+    keepGoing: "繼續前進！",
+
+    version: "版本",
+    whatsNew: "新增內容",
+    changelogTitle: "更新日誌",
+    changelogEmpty: "暫無更新記錄。",
+    closeChangelog: "關閉",
+
+    exportData: "匯出資料",
+    importData: "匯入資料",
+    exportCSV: "匯出為 CSV",
+    importCSV: "從 CSV 匯入",
+    importSuccess: "匯入成功！",
+    importError: "匯入失敗，檔案格式不正確。",
+    importConfirm: "這會覆蓋你目前的進度，確定要繼續嗎？",
+    exportFileName: "innowords-progress.csv",
+
   }
 };
 

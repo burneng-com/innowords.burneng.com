@@ -5,6 +5,8 @@
 
 import { vocabularyList, getDailyWords, getRandomWords, type VocabularyItem } from '../data/vocabulary';
 import { getTranslation, type Language } from '../data/i18n';
+import { changelog, bumpVersion, checkNewVersion, formatVersionDate, type ChangelogEntry } from '../data/changelog';
+import { exportToCSV, importFromCSV, downloadFile, readFileAsText } from '../data/export-import';
 
 const STORAGE_KEYS = {
   STATE: 'innowords_state_v1',
@@ -197,6 +199,7 @@ class InnoWordsApp {
   t() { return getTranslation(this.lang); }
 
   init(): void {
+    bumpVersion();
     document.documentElement.setAttribute('data-theme', this.theme);
     document.documentElement.setAttribute('lang', this.lang === 'zh' ? 'zh-Hant' : 'en');
     const t = this.t();
@@ -205,6 +208,7 @@ class InnoWordsApp {
     this.setupSettings();
     this.renderHeader();
     this.switchTab('daily');
+    this.showWhatsNew();
   }
 
   setupNavigation(): void {
@@ -264,6 +268,21 @@ class InnoWordsApp {
       }
     });
 
+    // Export button
+    const exportBtn = document.getElementById('export-data') as HTMLButtonElement;
+    if (exportBtn) exportBtn.addEventListener('click', () => this.handleExport());
+
+    // Import button
+    const importBtn = document.getElementById('import-data') as HTMLButtonElement;
+    if (importBtn) importBtn.addEventListener('click', () => this.handleImport());
+
+    // Changelog button
+    const changelogBtn = document.getElementById('view-changelog') as HTMLButtonElement;
+    if (changelogBtn) changelogBtn.addEventListener('click', () => {
+      document.getElementById('settings-modal')!.classList.add('hidden');
+      this.renderChangelog(document.getElementById('main-content')!);
+    });
+
     this.updateSettingsLabels();
   }
 
@@ -277,6 +296,12 @@ class InnoWordsApp {
     setText('label-darkmode', t.darkMode);
     setText('label-language', t.language);
     setText('reset-progress', t.resetProgress);
+    setText('export-data', t.exportCSV);
+    setText('import-data', t.importCSV);
+    setText('view-changelog', t.changelogTitle);
+
+    const verEl = document.getElementById('app-version');
+    if (verEl) verEl.textContent = t.version + ': ' + this.getVersion();
   }
 
   openSettings(): void {
@@ -810,6 +835,125 @@ class InnoWordsApp {
 
     return wrap;
   }
+
+  // ============== Version System ==============
+  getVersion(): string {
+    const saved = localStorage.getItem('innowords_version');
+    return saved || changelog[0].version;
+  }
+
+  showVersionBadge(): HTMLElement {
+    const version = this.getVersion();
+    return el('div', {
+      text: this.t().version + ': ' + version,
+      style: 'font-size:0.75rem; color: var(--color-text-light); text-align:center; margin-top:12px; padding-top:12px; border-top:1px solid var(--color-border);'
+    });
+  }
+
+  showWhatsNew(): void {
+    const check = checkNewVersion();
+    if (!check.isNew) return;
+    const t = this.t();
+    const modal = document.getElementById('settings-modal')!;
+    modal.classList.remove('hidden');
+    setTimeout(() => this.renderChangelog(document.getElementById('main-content')!), 100);
+  }
+
+  // ============== Export / Import ==============
+  handleExport(): void {
+    const t = this.t();
+    const csv = exportToCSV(this.state);
+    const filename = t.exportFileName;
+    downloadFile(csv, filename, 'text/csv;charset=utf-8;');
+    showToast(t.exportCSV + ' ✓', 'info');
+  }
+
+  handleImport(): void {
+    const t = this.t();
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.csv';
+    input.addEventListener('change', async () => {
+      const file = input.files?.[0];
+      if (!file) return;
+      try {
+        const text = await readFileAsText(file);
+        const imported = importFromCSV(text);
+        if (!imported) {
+          showToast(t.importError, 'info');
+          return;
+        }
+        if (confirm(t.importConfirm)) {
+          this.state = { ...this.state, ...imported };
+          saveState(this.state);
+          this.renderHeader();
+          this.switchTab(this.currentTab);
+          showToast(t.importSuccess, 'success');
+        }
+      } catch {
+        showToast(t.importError, 'info');
+      }
+    });
+    input.click();
+  }
+
+  // ============== Changelog ==============
+  renderChangelog(container: HTMLElement): void {
+    const t = this.t();
+    const version = this.getVersion();
+
+    container.innerHTML = '';
+    const section = el('section', { style: 'padding:20px;' });
+
+    const header = el('div', { style: 'display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;' });
+    header.appendChild(el('h2', { text: t.changelogTitle }));
+    const closeBtn = el('button', { className: 'btn btn-ghost', style: 'padding:4px; min-height:auto;', text: '✕' });
+    closeBtn.addEventListener('click', () => this.switchTab(this.currentTab));
+    header.appendChild(closeBtn);
+    section.appendChild(header);
+
+    if (changelog.length === 0) {
+      section.appendChild(el('p', { text: t.changelogEmpty, style: 'text-align:center; color: var(--color-text-light); padding:40px;' }));
+    } else {
+      changelog.forEach((entry, idx) => {
+        const isCurrent = entry.version === version;
+        const card = el('div', {
+          className: 'card animate-fade-in',
+          style: 'margin-bottom:12px; ' + (isCurrent ? 'border: 2px solid var(--color-primary);' : '')
+        });
+        card.style.animationDelay = (idx * 0.05) + 's';
+
+        const top = el('div', { style: 'display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;' });
+        top.appendChild(el('span', {
+          text: entry.version,
+          style: 'font-weight:700; color: var(--color-primary); font-size:0.95rem;'
+        }));
+        top.appendChild(el('span', {
+          text: formatVersionDate(entry.date),
+          style: 'font-size:0.8rem; color: var(--color-text-light);'
+        }));
+        if (isCurrent) {
+          top.appendChild(el('span', {
+            text: t.whatsNew,
+            style: 'font-size:0.7rem; padding:2px 8px; border-radius:10px; background: var(--color-primary); color: white; font-weight:600;'
+          }));
+        }
+        card.appendChild(top);
+
+        const changes = this.lang === 'zh' ? entry.changes.zh : entry.changes.en;
+        const ul = el('ul', { style: 'padding-left:16px; font-size:0.9rem; color: var(--color-text-light);' });
+        changes.forEach(c => {
+          const li = el('li', { text: c, style: 'margin-bottom:4px;' });
+          ul.appendChild(li);
+        });
+        card.appendChild(ul);
+        section.appendChild(card);
+      });
+    }
+
+    container.appendChild(section);
+  }
+
 }
 
 document.addEventListener('DOMContentLoaded', () => {

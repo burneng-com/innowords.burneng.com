@@ -51,9 +51,25 @@ import '../styles/global.css';
             </label>
           </div>
 
+          <!-- Export / Import -->
+          <div style="margin-top: var(--space-lg); display:flex; flex-direction:column; gap:10px;">
+            <button id="export-data" class="btn btn-outline w-full">Export as CSV</button>
+            <button id="import-data" class="btn btn-outline w-full">Import from CSV</button>
+          </div>
+
+          <!-- Changelog -->
+          <div style="margin-top: var(--space-md);">
+            <button id="view-changelog" class="btn btn-ghost w-full" style="color: var(--color-primary);">Changelog</button>
+          </div>
+
           <!-- Reset -->
-          <div style="margin-top: var(--space-lg);">
+          <div style="margin-top: var(--space-md);">
             <button id="reset-progress" class="btn btn-outline w-full" style="border-color: var(--color-accent-pink); color: var(--color-accent-pink);">Reset Progress</button>
+          </div>
+
+          <!-- Version -->
+          <div id="app-version" style="font-size:0.75rem; color: var(--color-text-light); text-align:center; margin-top:12px; padding-top:12px; border-top:1px solid var(--color-border);">
+            Version: v20260503.1
           </div>
         </div>
       </div>
