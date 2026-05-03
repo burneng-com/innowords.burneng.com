@@ -1,0 +1,7 @@
+{
+  "tool_name": "WebFetch",
+  "tool_input_preview": "{\"url\":\"https://8550ed1b.innowords.pages.dev\",\"prompt\":\"Check if the page loads correctly. Does the HTML contain \\\"InnoWords\\\", \\\"app-header\\\", and \\\"main-content\\\" elements? Any errors?\"}",
+  "error": "ECONNREFUSED",
+  "timestamp": "2026-05-03T09:56:03.224Z",
+  "retry_count": 1
+}

@@ -1,17 +1,25 @@
 {
-  "name": "pale-proxima",
+  "name": "innowords",
   "type": "module",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "description": "InnoWords - innoblue 專屬的英文單字冒險小站",
   "engines": {
-    "node": ">=22.12.0"
+    "node": ">=20.0.0"
   },
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "deploy": "bun run build && wrangler pages deploy dist --project-name=innowords",
+    "deploy:preview": "bun run build && wrangler pages deploy dist --project-name=innowords --branch=preview",
+    "wrangler": "wrangler",
+    "cf:login": "wrangler login"
   },
   "dependencies": {
     "astro": "^6.2.1"
+  },
+  "devDependencies": {
+    "wrangler": "^4.87.0"
   }
 }
