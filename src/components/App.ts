@@ -401,28 +401,11 @@ class InnoWordsApp {
     titleBox.appendChild(el('p', { text: t.dailySubtitle }));
     section.appendChild(titleBox);
 
-    if (completed) {
-      const banner = el('div', { className: 'card card-gradient text-center animate-pop-in', style: 'margin-bottom:16px;' });
-      banner.appendChild(el('div', { text: '🎉', className: 'animate-float', style: 'font-size:3rem; margin-bottom:8px;' }));
-      banner.appendChild(el('h3', { text: t.dailyCompleted }));
-      banner.appendChild(el('p', { text: t.dailyResetTomorrow, style: 'color: rgba(255,255,255,0.9); margin-top:8px;' }));
-      section.appendChild(banner);
-    }
+    this.renderDailyBanner(section, completed);
 
     const wordsContainer = el('div', { attrs: { id: 'daily-words' }, style: 'display:flex; flex-direction:column; gap:12px;' });
     words.forEach((word, idx) => {
-      const card = el('div', { className: 'card animate-fade-in', style: 'animation-delay:' + (idx * 0.05) + 's' });
-      const top = el('div', { style: 'display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px;' });
-      const left = el('div');
-      left.appendChild(el('h3', { text: word.word, style: 'color: var(--color-primary);' }));
-      left.appendChild(el('span', { text: '/' + word.pronunciationHint + '/ • ' + word.partOfSpeech, style: 'font-size:0.8rem; color: var(--color-text-light);' }));
-      const diff = el('span', { text: this.difficultyLabel(word.difficulty), style: 'font-size:0.7rem; padding:4px 8px; border-radius:12px; color: white; font-weight:600; background:' + this.difficultyBg(word.difficulty) });
-      top.appendChild(left); top.appendChild(diff);
-      card.appendChild(top);
-      card.appendChild(el('p', { text: word.chineseMeaning, style: 'color: var(--color-text); font-weight:600; margin-bottom:4px;' }));
-      card.appendChild(el('p', { text: word.englishMeaning, style: 'font-size:0.9rem; color: var(--color-text-light); margin-bottom:8px;' }));
-      card.appendChild(el('div', { text: '💬 ' + word.exampleSentence, style: 'background: rgba(79, 109, 255, 0.06); padding:10px; border-radius:8px; font-size:0.9rem; font-style:italic;' }));
-      wordsContainer.appendChild(card);
+      wordsContainer.appendChild(this.renderDailyWordCard(word, idx));
     });
     section.appendChild(wordsContainer);
 
@@ -442,6 +425,31 @@ class InnoWordsApp {
     }
 
     container.appendChild(section);
+  }
+
+  private renderDailyBanner(container: HTMLElement, completed: boolean): void {
+    if (!completed) return;
+    const t = this.t();
+    const banner = el('div', { className: 'card card-gradient text-center animate-pop-in', style: 'margin-bottom:16px;' });
+    banner.appendChild(el('div', { text: '🎉', className: 'animate-float', style: 'font-size:3rem; margin-bottom:8px;' }));
+    banner.appendChild(el('h3', { text: t.dailyCompleted }));
+    banner.appendChild(el('p', { text: t.dailyResetTomorrow, style: 'color: rgba(255,255,255,0.9); margin-top:8px;' }));
+    container.appendChild(banner);
+  }
+
+  private renderDailyWordCard(word: VocabularyItem, idx: number): HTMLElement {
+    const card = el('div', { className: 'card animate-fade-in', style: 'animation-delay:' + (idx * 0.05) + 's' });
+    const top = el('div', { style: 'display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px;' });
+    const left = el('div');
+    left.appendChild(el('h3', { text: word.word, style: 'color: var(--color-primary);' }));
+    left.appendChild(el('span', { text: '/' + word.pronunciationHint + '/ • ' + word.partOfSpeech, style: 'font-size:0.8rem; color: var(--color-text-light);' }));
+    const diff = el('span', { text: this.difficultyLabel(word.difficulty), style: 'font-size:0.7rem; padding:4px 8px; border-radius:12px; color: white; font-weight:600; background:' + this.difficultyBg(word.difficulty) });
+    top.appendChild(left); top.appendChild(diff);
+    card.appendChild(top);
+    card.appendChild(el('p', { text: word.chineseMeaning, style: 'color: var(--color-text); font-weight:600; margin-bottom:4px;' }));
+    card.appendChild(el('p', { text: word.englishMeaning, style: 'font-size:0.9rem; color: var(--color-text-light); margin-bottom:8px;' }));
+    card.appendChild(el('div', { text: '💬 ' + word.exampleSentence, style: 'background: rgba(79, 109, 255, 0.06); padding:10px; border-radius:8px; font-size:0.9rem; font-style:italic;' }));
+    return card;
   }
 
   // ============== MODE 2: Flashcards ==============
@@ -485,23 +493,38 @@ class InnoWordsApp {
 
     const flashcard = el('div', { className: 'flashcard', attrs: { id: 'flashcard' } });
     const inner = el('div', { className: 'flashcard-inner' });
-    const front = el('div', { className: 'flashcard-front' });
-    front.appendChild(el('span', { text: this.difficultyLabel(word.difficulty), style: 'font-size:0.8rem; padding:4px 12px; border-radius:12px; color: white; font-weight:600; margin-bottom:12px; background:' + this.difficultyBg(word.difficulty) }));
-    front.appendChild(el('h2', { text: word.word, style: 'font-size:2rem; color: var(--color-primary); margin-bottom:8px;' }));
-    front.appendChild(el('p', { text: '/' + word.pronunciationHint + '/', style: 'font-size:0.9rem; color: var(--color-text-light);' }));
-    front.appendChild(el('p', { text: word.partOfSpeech, style: 'font-size:0.85rem; color: var(--color-text-light); margin-top:4px;' }));
-    front.appendChild(el('div', { text: '👆 ' + t.tapToFlip, style: 'margin-top:24px; font-size:0.85rem; color: var(--color-text-light);' }));
-
-    const back = el('div', { className: 'flashcard-back' });
-    back.appendChild(el('h2', { text: word.chineseMeaning, style: 'font-size:1.4rem; margin-bottom:12px;' }));
-    back.appendChild(el('p', { text: word.englishMeaning, style: 'font-size:0.95rem; opacity:0.95; margin-bottom:12px; text-align:center;' }));
-    back.appendChild(el('div', { text: '💬 ' + word.exampleSentence, style: 'font-size:0.9rem; font-style:italic; padding: 12px; background: rgba(255,255,255,0.15); border-radius: 8px; text-align:center;' }));
-
-    inner.appendChild(front); inner.appendChild(back);
+    inner.appendChild(this.renderFlashcardFace(word, 'front'));
+    inner.appendChild(this.renderFlashcardFace(word, 'back'));
     flashcard.appendChild(inner);
     flashcard.addEventListener('click', () => flashcard.classList.toggle('flipped'));
     section.appendChild(flashcard);
 
+    section.appendChild(this.renderFlashcardControls(word));
+
+    container.appendChild(section);
+  }
+
+  private renderFlashcardFace(word: VocabularyItem, side: 'front' | 'back'): HTMLElement {
+    if (side === 'front') {
+      const t = this.t();
+      const front = el('div', { className: 'flashcard-front' });
+      front.appendChild(el('span', { text: this.difficultyLabel(word.difficulty), style: 'font-size:0.8rem; padding:4px 12px; border-radius:12px; color: white; font-weight:600; margin-bottom:12px; background:' + this.difficultyBg(word.difficulty) }));
+      front.appendChild(el('h2', { text: word.word, style: 'font-size:2rem; color: var(--color-primary); margin-bottom:8px;' }));
+      front.appendChild(el('p', { text: '/' + word.pronunciationHint + '/', style: 'font-size:0.9rem; color: var(--color-text-light);' }));
+      front.appendChild(el('p', { text: word.partOfSpeech, style: 'font-size:0.85rem; color: var(--color-text-light); margin-top:4px;' }));
+      front.appendChild(el('div', { text: '👆 ' + t.tapToFlip, style: 'margin-top:24px; font-size:0.85rem; color: var(--color-text-light);' }));
+      return front;
+    } else {
+      const back = el('div', { className: 'flashcard-back' });
+      back.appendChild(el('h2', { text: word.chineseMeaning, style: 'font-size:1.4rem; margin-bottom:12px;' }));
+      back.appendChild(el('p', { text: word.englishMeaning, style: 'font-size:0.95rem; opacity:0.95; margin-bottom:12px; text-align:center;' }));
+      back.appendChild(el('div', { text: '💬 ' + word.exampleSentence, style: 'font-size:0.9rem; font-style:italic; padding: 12px; background: rgba(255,255,255,0.15); border-radius: 8px; text-align:center;' }));
+      return back;
+    }
+  }
+
+  private renderFlashcardControls(word: VocabularyItem): HTMLElement {
+    const t = this.t();
     const btnRow = el('div', { style: 'display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-top:20px;' });
     const knownBtn = el('button', { className: 'btn btn-success', text: t.iKnowIt });
     const reviewBtn = el('button', { className: 'btn btn-outline', text: t.reviewLater });
@@ -519,40 +542,18 @@ class InnoWordsApp {
       this.flashcardIndex++; this.renderHeader(); this.switchTab('cards');
     });
     btnRow.appendChild(knownBtn); btnRow.appendChild(reviewBtn);
-    section.appendChild(btnRow);
-
-    container.appendChild(section);
+    return btnRow;
   }
 
   // ============== MODE 3: Multiple Choice Quiz ==============
   renderQuiz(container: HTMLElement): void {
-    const t = this.t();
-
     if (this.quizDeck.length === 0 || this.quizIndex >= this.quizTotal) {
       this.quizDeck = getRandomWords(this.quizTotal);
       this.quizIndex = 0; this.quizScore = 0; this.quizAnswered = false;
     }
 
     if (this.quizIndex >= this.quizTotal) {
-      const isHigh = this.quizScore > this.state.quizHighScore;
-      if (isHigh) this.state.quizHighScore = this.quizScore;
-      saveState(this.state);
-
-      const section = el('section', { style: 'padding:20px;' });
-      const card = el('div', { className: 'card card-gradient text-center animate-pop-in' });
-      const emoji = this.quizScore === this.quizTotal ? '🏆' : this.quizScore >= 3 ? '🌟' : '💪';
-      card.appendChild(el('div', { text: emoji, className: 'animate-float', style: 'font-size:4rem; margin-bottom:12px;' }));
-      card.appendChild(el('h2', { text: t.quizComplete }));
-      card.appendChild(el('p', { text: this.quizScore + ' / ' + this.quizTotal, style: 'color: rgba(255,255,255,0.95); font-size:1.4rem; font-weight:700; margin:12px 0;' }));
-      if (isHigh) card.appendChild(el('p', { text: '🎉 New high score!', style: 'color: rgba(255,255,255,0.9);' }));
-      section.appendChild(card);
-
-      const restartBtn = el('button', { className: 'btn btn-primary w-full', text: t.playAgain, style: 'margin-top:20px;' });
-      restartBtn.addEventListener('click', () => { this.quizDeck = []; this.switchTab('quiz'); });
-      section.appendChild(restartBtn);
-
-      if (this.quizScore === this.quizTotal) fireConfetti();
-      container.appendChild(section);
+      this.renderQuizResult(container);
       return;
     }
 
@@ -560,6 +561,11 @@ class InnoWordsApp {
     const wrongOptions = vocabularyList.filter(w => w.id !== word.id).sort(() => Math.random() - 0.5).slice(0, 3).map(w => w.chineseMeaning);
     const allOptions = [...wrongOptions, word.chineseMeaning].sort(() => Math.random() - 0.5);
 
+    this.renderQuizQuestion(container, word, allOptions);
+  }
+
+  private renderQuizQuestion(container: HTMLElement, word: VocabularyItem, allOptions: string[]): void {
+    const t = this.t();
     const section = el('section', { style: 'padding:20px;' });
     const titleBox = el('div', { style: 'margin-bottom:16px;' });
     titleBox.appendChild(el('h2', { text: t.quizTitle }));
@@ -621,6 +627,29 @@ class InnoWordsApp {
     section.appendChild(optionsContainer);
     section.appendChild(feedbackEl);
     section.appendChild(nextBtn);
+    container.appendChild(section);
+  }
+
+  private renderQuizResult(container: HTMLElement): void {
+    const t = this.t();
+    const isHigh = this.quizScore > this.state.quizHighScore;
+    if (isHigh) this.state.quizHighScore = this.quizScore;
+    saveState(this.state);
+
+    const section = el('section', { style: 'padding:20px;' });
+    const card = el('div', { className: 'card card-gradient text-center animate-pop-in' });
+    const emoji = this.quizScore === this.quizTotal ? '🏆' : this.quizScore >= 3 ? '🌟' : '💪';
+    card.appendChild(el('div', { text: emoji, className: 'animate-float', style: 'font-size:4rem; margin-bottom:12px;' }));
+    card.appendChild(el('h2', { text: t.quizComplete }));
+    card.appendChild(el('p', { text: this.quizScore + ' / ' + this.quizTotal, style: 'color: rgba(255,255,255,0.95); font-size:1.4rem; font-weight:700; margin:12px 0;' }));
+    if (isHigh) card.appendChild(el('p', { text: '🎉 New high score!', style: 'color: rgba(255,255,255,0.9);' }));
+    section.appendChild(card);
+
+    const restartBtn = el('button', { className: 'btn btn-primary w-full', text: t.playAgain, style: 'margin-top:20px;' });
+    restartBtn.addEventListener('click', () => { this.quizDeck = []; this.switchTab('quiz'); });
+    section.appendChild(restartBtn);
+
+    if (this.quizScore === this.quizTotal) fireConfetti();
     container.appendChild(section);
   }
 
