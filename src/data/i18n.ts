@@ -116,6 +116,14 @@ export interface Translations {
   importError: string;
   importConfirm: string;
   exportFileName: string;
+  // Acronyms
+  acronymTitle: string;
+  acronymSubtitle: string;
+  acronymFullName: string;
+  acronymChinese: string;
+  acronymMemoryTip: string;
+  acronymCategory: string;
+  acronymEmpty: string;
 }
 
 export const translations: Record<Language, Translations> = {

@@ -4,6 +4,7 @@
    ======================================== */
 
 import { vocabularyList, getDailyWords, getRandomWords, type VocabularyItem } from '../data/vocabulary';
+import { acronymsList, getRandomAcronyms, type AcronymItem } from '../data/acronyms';
 import { getTranslation, type Language } from '../data/i18n';
 import { changelog, bumpVersion, checkNewVersion, formatVersionDate, type ChangelogEntry } from '../data/changelog';
 import { exportToCSV, importFromCSV, downloadFile, readFileAsText } from '../data/export-import';
@@ -753,6 +754,9 @@ class InnoWordsApp {
     // Fill-in-blank section
     section.appendChild(this.buildFillInBlank());
 
+    // Acronyms section
+    this.renderAcronyms(container);
+
     container.appendChild(section);
   }
 
@@ -895,6 +899,44 @@ class InnoWordsApp {
       }
     });
     input.click();
+  }
+
+
+  // ============== Acronym Learning ==============
+  renderAcronyms(container: HTMLElement): void {
+    const t = this.t();
+    const acronyms = getRandomAcronyms(acronymsList.length);
+
+    const section = el('section', { style: 'padding:20px;' });
+    const titleBox = el('div', { style: 'margin-bottom:16px;' });
+    titleBox.appendChild(el('h2', { text: '📌 ' + t.acronymTitle }));
+    titleBox.appendChild(el('p', { text: t.acronymSubtitle, style: 'font-size:0.9rem; color: var(--color-text-light);' }));
+    section.appendChild(titleBox);
+
+    if (acronyms.length === 0) {
+      section.appendChild(el('p', { text: t.acronymEmpty, style: 'text-align:center; color: var(--color-text-light); padding:40px;' }));
+    } else {
+      acronyms.forEach((a, idx) => {
+        const card = el('div', { className: 'card animate-fade-in', style: 'margin-bottom:12px; animation-delay:' + (idx * 0.05) + 's;' });
+
+        const top = el('div', { style: 'display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;' });
+        top.appendChild(el('span', { text: a.acronym, style: 'font-size:1.4rem; font-weight:800; color: var(--color-primary);' }));
+        top.appendChild(el('span', { text: a.category, style: 'font-size:0.7rem; padding:3px 10px; border-radius:12px; background: var(--color-accent-teal); color: white; font-weight:600;' }));
+        card.appendChild(top);
+
+        card.appendChild(el('p', { text: a.fullName, style: 'font-weight:600; font-size:1rem; margin-bottom:4px;' }));
+        card.appendChild(el('p', { text: a.chineseMeaning, style: 'color: var(--color-text); font-weight:600; margin-bottom:8px;' }));
+
+        const tipBox = el('div', { style: 'background: rgba(79, 109, 255, 0.06); padding:10px; border-radius:8px; font-size:0.9rem; color: var(--color-text-light);' });
+        tipBox.appendChild(el('span', { text: '💡 ' + t.acronymMemoryTip + ': ', style: 'font-weight:600; color: var(--color-primary);' }));
+        tipBox.appendChild(document.createTextNode(a.memoryTip));
+        card.appendChild(tipBox);
+
+        section.appendChild(card);
+      });
+    }
+
+    container.appendChild(section);
   }
 
   // ============== Changelog ==============
