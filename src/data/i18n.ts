@@ -238,6 +238,13 @@ export const translations: Record<Language, Translations> = {
     importConfirm: "This will overwrite your current progress. Continue?",
     exportFileName: "innowords-progress.csv",
 
+    acronymTitle: "Acronyms",
+    acronymSubtitle: "Common English abbreviations for innoblue",
+    acronymFullName: "Full Name",
+    acronymChinese: "Chinese Meaning",
+    acronymMemoryTip: "Memory Tip",
+    acronymCategory: "Category",
+    acronymEmpty: "No acronyms available."
   },
   zh: {
     appName: "InnoWords",
@@ -350,6 +357,13 @@ export const translations: Record<Language, Translations> = {
     importConfirm: "這會覆蓋你目前的進度，確定要繼續嗎？",
     exportFileName: "innowords-progress.csv",
 
+    acronymTitle: "縮寫學習",
+    acronymSubtitle: "innoblue 主人分享的英文縮寫",
+    acronymFullName: "英文全名",
+    acronymChinese: "中文意思",
+    acronymMemoryTip: "簡單記法",
+    acronymCategory: "分類",
+    acronymEmpty: "暫無縮寫資料。"
   }
 };
 

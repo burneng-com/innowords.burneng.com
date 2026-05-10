@@ -6,6 +6,20 @@ export interface ChangelogEntry {
 
 export const changelog: ChangelogEntry[] = [
   {
+    version: "v20260503.3",
+    date: "2026-05-03",
+    changes: {
+      en: [
+        "🐞 Fix Review tab showing 'undefined' on acronym labels (missing zh/en translations)",
+        "🧪 Strengthen i18n e2e test: assert required keys exist in both blocks (catches both-blocks-missing bug)"
+      ],
+      zh: [
+        "🐞 修正複習頁面縮寫區塊顯示 undefined 的問題（兩個語言區塊都漏了翻譯）",
+        "🧪 強化 i18n e2e 測試：明確檢查兩個語言區塊都有必填 key"
+      ]
+    }
+  },
+  {
     version: "v20260503.2",
     date: "2026-05-03",
     changes: {

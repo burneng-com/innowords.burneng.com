@@ -141,8 +141,8 @@
   "hotPaths": [
     {
       "path": "src/components/App.ts",
-      "accessCount": 6,
-      "lastAccessed": 1778406376315,
+      "accessCount": 7,
+      "lastAccessed": 1778420743286,
       "type": "file"
     },
     {
@@ -152,21 +152,27 @@
       "type": "file"
     },
     {
+      "path": "src/data/i18n.ts",
+      "accessCount": 4,
+      "lastAccessed": 1778420782329,
+      "type": "file"
+    },
+    {
       "path": "e2e/test.js",
+      "accessCount": 4,
+      "lastAccessed": 1778420801030,
+      "type": "file"
+    },
+    {
+      "path": "src/data/changelog.ts",
       "accessCount": 3,
-      "lastAccessed": 1778406416721,
+      "lastAccessed": 1778420831821,
       "type": "file"
     },
     {
       "path": "src/data/export-import.ts",
       "accessCount": 2,
       "lastAccessed": 1778406442786,
-      "type": "file"
-    },
-    {
-      "path": "src/data/changelog.ts",
-      "accessCount": 2,
-      "lastAccessed": 1778420226418,
       "type": "file"
     }
   ],

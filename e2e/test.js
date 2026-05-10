@@ -80,6 +80,21 @@ function testI18nCompleteness() {
   zhKeys.forEach(key => {
     assert(en[key] !== undefined, `Missing en translation for: ${key}`);
   });
+
+  // Ensure required keys exist (catches both-blocks-missing bug)
+  const requiredKeys = [
+    'appName', 'navDaily', 'navCards', 'navQuiz', 'navMatch', 'navReview',
+    'dailyTitle', 'flashcardTitle', 'quizTitle', 'matchTitle', 'reviewTitle',
+    'settings', 'darkMode', 'language', 'resetProgress',
+    'version', 'whatsNew', 'changelogTitle',
+    'exportCSV', 'importCSV', 'importSuccess', 'importError',
+    'acronymTitle', 'acronymSubtitle', 'acronymFullName',
+    'acronymChinese', 'acronymMemoryTip', 'acronymCategory', 'acronymEmpty'
+  ];
+  requiredKeys.forEach(key => {
+    assert(typeof en[key] === 'string' && en[key].length > 0, `en.${key} must be a non-empty string`);
+    assert(typeof zh[key] === 'string' && zh[key].length > 0, `zh.${key} must be a non-empty string`);
+  });
 }
 
 // Test 4: Daily words determinism
