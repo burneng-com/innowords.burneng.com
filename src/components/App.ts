@@ -148,6 +148,13 @@ function createProgressBar(percent: number, style?: string): HTMLElement {
   return bar;
 }
 
+function formatPronunciation(word: VocabularyItem): string {
+  if (word.kkPronunciation && word.kkPronunciation.trim()) {
+    return '[' + word.kkPronunciation + ']';
+  }
+  return '/' + word.pronunciationHint + '/';
+}
+
 function settingsIconSvg(): SVGElement {
   const svgNS = 'http://www.w3.org/2000/svg';
   const svg = document.createElementNS(svgNS, 'svg');
@@ -510,7 +517,7 @@ class InnoWordsApp {
       const front = el('div', { className: 'flashcard-front' });
       front.appendChild(el('span', { text: this.difficultyLabel(word.difficulty), style: 'font-size:0.8rem; padding:4px 12px; border-radius:12px; color: white; font-weight:600; margin-bottom:12px; background:' + this.difficultyBg(word.difficulty) }));
       front.appendChild(el('h2', { text: word.word, style: 'font-size:2rem; color: var(--color-primary); margin-bottom:8px;' }));
-      front.appendChild(el('p', { text: '/' + word.pronunciationHint + '/', style: 'font-size:0.9rem; color: var(--color-text-light);' }));
+      front.appendChild(el('p', { text: formatPronunciation(word), style: 'font-size:0.9rem; color: var(--color-text-light);' }));
       front.appendChild(el('p', { text: word.partOfSpeech, style: 'font-size:0.85rem; color: var(--color-text-light); margin-top:4px;' }));
       front.appendChild(el('div', { text: '👆 ' + t.tapToFlip, style: 'margin-top:24px; font-size:0.85rem; color: var(--color-text-light);' }));
       return front;

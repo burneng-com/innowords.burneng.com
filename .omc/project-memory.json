@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastScanned": 1777805548032,
+  "lastScanned": 1778405419997,
   "projectRoot": "/Users/eugene/Dropbox/burneng-com/innowords-bruneng-com",
   "techStack": {
     "languages": [
@@ -68,7 +68,7 @@
       "path": "dist",
       "purpose": "Distribution/build output",
       "fileCount": 3,
-      "lastAccessed": 1777805547983,
+      "lastAccessed": 1778405419981,
       "keyFiles": [
         "favicon.ico",
         "favicon.svg",
@@ -79,7 +79,7 @@
       "path": "e2e",
       "purpose": null,
       "fileCount": 1,
-      "lastAccessed": 1777805547999,
+      "lastAccessed": 1778405419981,
       "keyFiles": [
         "test.js"
       ]
@@ -88,7 +88,7 @@
       "path": "public",
       "purpose": "Public files",
       "fileCount": 2,
-      "lastAccessed": 1777805547999,
+      "lastAccessed": 1778405419985,
       "keyFiles": [
         "favicon.ico",
         "favicon.svg"
@@ -98,14 +98,14 @@
       "path": "src",
       "purpose": "Source code",
       "fileCount": 0,
-      "lastAccessed": 1777805548000,
+      "lastAccessed": 1778405419985,
       "keyFiles": []
     },
     "src/components": {
       "path": "src/components",
       "purpose": "UI components",
       "fileCount": 1,
-      "lastAccessed": 1777805548000,
+      "lastAccessed": 1778405419985,
       "keyFiles": [
         "App.ts"
       ]
@@ -114,7 +114,7 @@
       "path": "src/data",
       "purpose": "Data files",
       "fileCount": 5,
-      "lastAccessed": 1777805548000,
+      "lastAccessed": 1778405419986,
       "keyFiles": [
         "acronyms.ts",
         "changelog.ts",
@@ -125,7 +125,7 @@
       "path": "src/pages",
       "purpose": "Page components",
       "fileCount": 1,
-      "lastAccessed": 1777805548000,
+      "lastAccessed": 1778405419986,
       "keyFiles": [
         "index.astro"
       ]
@@ -134,76 +134,34 @@
       "path": "src/types",
       "purpose": "Type definitions",
       "fileCount": 0,
-      "lastAccessed": 1777805548001,
+      "lastAccessed": 1778405419986,
       "keyFiles": []
     }
   },
   "hotPaths": [
     {
       "path": "src/components/App.ts",
-      "accessCount": 27,
-      "lastAccessed": 1777807683964,
+      "accessCount": 6,
+      "lastAccessed": 1778406376315,
       "type": "file"
     },
     {
       "path": "src/data/vocabulary.ts",
-      "accessCount": 5,
-      "lastAccessed": 1777806321303,
+      "accessCount": 4,
+      "lastAccessed": 1778406258798,
+      "type": "file"
+    },
+    {
+      "path": "e2e/test.js",
+      "accessCount": 3,
+      "lastAccessed": 1778406416721,
       "type": "file"
     },
     {
       "path": "src/data/export-import.ts",
-      "accessCount": 5,
-      "lastAccessed": 1777806726759,
+      "accessCount": 2,
+      "lastAccessed": 1778406442786,
       "type": "file"
-    },
-    {
-      "path": "package.json",
-      "accessCount": 1,
-      "lastAccessed": 1777805564433,
-      "type": "file"
-    },
-    {
-      "path": "src",
-      "accessCount": 1,
-      "lastAccessed": 1777805564484,
-      "type": "directory"
-    },
-    {
-      "path": "src/data/acronyms.ts",
-      "accessCount": 1,
-      "lastAccessed": 1777805572843,
-      "type": "file"
-    },
-    {
-      "path": "src/data/i18n.ts",
-      "accessCount": 1,
-      "lastAccessed": 1777805572912,
-      "type": "file"
-    },
-    {
-      "path": "src/pages/index.astro",
-      "accessCount": 1,
-      "lastAccessed": 1777805573025,
-      "type": "file"
-    },
-    {
-      "path": "src/data/changelog.ts",
-      "accessCount": 1,
-      "lastAccessed": 1777805583886,
-      "type": "file"
-    },
-    {
-      "path": "ANALYSIS.md",
-      "accessCount": 1,
-      "lastAccessed": 1777805797649,
-      "type": "file"
-    },
-    {
-      "path": "src/data",
-      "accessCount": 1,
-      "lastAccessed": 1777806485997,
-      "type": "directory"
     }
   ],
   "userDirectives": []

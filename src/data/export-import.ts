@@ -110,6 +110,9 @@ export function importFromCSV(csvText: string): { state: Partial<AppState> | nul
       if (commaIdx > 0) {
         field = line.slice(0, commaIdx);
         value = line.slice(commaIdx + 1);
+        if (value.startsWith('"') && value.endsWith('"')) {
+          value = value.slice(1, -1);
+        }
       }
     }
 

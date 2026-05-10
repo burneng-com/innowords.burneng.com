@@ -121,7 +121,35 @@ function testVersionUtilities() {
   if (original) localStorage.setItem('innowords_version', original);
 }
 
-// Test 7: CSV export/import
+// Test 7a: KK pronunciation coverage
+function testKKPronunciation() {
+  const { vocabularyList } = require('../src/data/vocabulary');
+  const withKK = vocabularyList.filter(w => w.kkPronunciation && w.kkPronunciation.trim());
+  assert(withKK.length === vocabularyList.length, `All ${vocabularyList.length} words should have kkPronunciation, got ${withKK.length}`);
+
+  // KK should not contain brackets (UI adds them)
+  vocabularyList.forEach(w => {
+    assert(!w.kkPronunciation.includes('['), `${w.word}: kkPronunciation should not contain '['`);
+    assert(!w.kkPronunciation.includes(']'), `${w.word}: kkPronunciation should not contain ']'`);
+    assert(!w.kkPronunciation.includes('/'), `${w.word}: kkPronunciation should not contain '/'`);
+  });
+}
+
+// Test 7b: importFromCSV input validation
+function testCSVValidation() {
+  const { importFromCSV } = require('../src/data/export-import');
+
+  // Empty CSV
+  const empty = importFromCSV('');
+  assert(empty.state === null, 'Empty CSV should return null state');
+  assert(empty.errors.length > 0, 'Empty CSV should have errors');
+
+  // Negative XP
+  const bad = importFromCSV('Field,Value\nXP,-1\nLevel,1\n');
+  assert(bad.state === null, 'Negative XP should be rejected');
+}
+
+// Test 8: CSV export/import
 function testCSVExportImport() {
   const { exportToCSV, importFromCSV } = require('../src/data/export-import');
 
@@ -141,10 +169,17 @@ function testCSVExportImport() {
   assert(csv.includes('XP,100'), 'CSV should contain XP');
   assert(csv.includes('Level,3'), 'CSV should contain Level');
 
-  const imported = importFromCSV(csv);
-  assert(imported, 'Import should return data');
-  assert(imported.xp === 100, `Imported XP should be 100, got ${imported.xp}`);
-  assert(imported.level === 3, `Imported Level should be 3, got ${imported.level}`);
+  const result = importFromCSV(csv);
+  assert(result.state !== null, `Import should succeed, errors: ${result.errors.join(', ')}`);
+  assert(result.errors.length === 0, `Should have no errors, got: ${result.errors.join(', ')}`);
+  assert(result.state.xp === 100, `Imported XP should be 100, got ${result.state.xp}`);
+  assert(result.state.level === 3, `Imported Level should be 3, got ${result.state.level}`);
+
+  // Test invalid input rejection
+  const badCsv = 'Field,Value\nXP,-5\nLevel,0\n';
+  const badResult = importFromCSV(badCsv);
+  assert(badResult.state === null, 'Invalid CSV should return null state');
+  assert(badResult.errors.length > 0, 'Invalid CSV should have errors');
 }
 
 // Run tests
@@ -156,6 +191,8 @@ test('i18n translations are complete (en ↔ zh)', testI18nCompleteness);
 test('Daily words are deterministic for same date', testDailyWordsDeterminism);
 test('Changelog has valid entries', testChangelog);
 test('Version bump utility works correctly', testVersionUtilities);
+test('All vocabulary words have valid kkPronunciation', testKKPronunciation);
+test('CSV import validates input and rejects bad data', testCSVValidation);
 test('CSV export/import round-trip works', testCSVExportImport);
 
 console.log('\n' + '─'.repeat(60));

@@ -8,6 +8,7 @@ export interface VocabularyItem {
   englishMeaning: string;
   exampleSentence: string;
   pronunciationHint: string;
+  kkPronunciation?: string;
   difficulty: Difficulty;
 }
 
@@ -20,6 +21,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "to make something better",
     exampleSentence: "I want to improve my English vocabulary every day.",
     pronunciationHint: "im-PROOV",
+    kkPronunciation: "ɪmˋpruv",
     difficulty: "easy"
   },
   {
@@ -30,6 +32,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "to successfully complete a goal",
     exampleSentence: "With hard work, you can achieve anything you set your mind to.",
     pronunciationHint: "uh-CHEEV",
+    kkPronunciation: "əˋtʃiv",
     difficulty: "easy"
   },
   {
@@ -40,6 +43,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "something difficult that tests your ability",
     exampleSentence: "Learning a new language is a fun challenge.",
     pronunciationHint: "CHAL-linj",
+    kkPronunciation: "ˋtʃælɪndʒ",
     difficulty: "easy"
   },
   {
@@ -50,6 +54,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "feeling sure about your abilities",
     exampleSentence: "She felt confident after practicing her presentation.",
     pronunciationHint: "KON-fi-dent",
+    kkPronunciation: "ˋkɑnfɪdənt",
     difficulty: "easy"
   },
   {
@@ -60,6 +65,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "having made a firm decision and not willing to change it",
     exampleSentence: "He was determined to finish the marathon.",
     pronunciationHint: "di-TER-mind",
+    kkPronunciation: "dɪˋtɝmɪnd",
     difficulty: "easy"
   },
   {
@@ -70,6 +76,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "to give support, confidence, or hope to someone",
     exampleSentence: "My teacher always encourages me to speak more English.",
     pronunciationHint: "in-KUR-ij",
+    kkPronunciation: "ɪnˋkɝɪdʒ",
     difficulty: "easy"
   },
   {
@@ -80,6 +87,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "knowledge or skill gained over time",
     exampleSentence: "Traveling abroad was an amazing experience.",
     pronunciationHint: "ik-SPEER-ee-uns",
+    kkPronunciation: "ɪkˋspɪriəns",
     difficulty: "easy"
   },
   {
@@ -90,6 +98,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "a chance to do something",
     exampleSentence: "This job is a great opportunity for my career.",
     pronunciationHint: "op-er-TOO-ni-tee",
+    kkPronunciation: "ˏɑpɚˋtjunətɪ",
     difficulty: "medium"
   },
   {
@@ -100,6 +109,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "to do something repeatedly to get better at it",
     exampleSentence: "Practice makes perfect!",
     pronunciationHint: "PRAK-tis",
+    kkPronunciation: "ˋpræktɪs",
     difficulty: "easy"
   },
   {
@@ -110,6 +120,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "forward movement toward a goal",
     exampleSentence: "I can see your progress in English!",
     pronunciationHint: "PROH-gres",
+    kkPronunciation: "ˋprɑgrɛs",
     difficulty: "easy"
   },
   {
@@ -120,6 +131,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "worthy of attention; impressive",
     exampleSentence: "Her progress in English is truly remarkable.",
     pronunciationHint: "ri-MAR-kuh-bul",
+    kkPronunciation: "rɪˋmɑrkəbəl",
     difficulty: "medium"
   },
   {
@@ -130,6 +142,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "to try very hard to do something difficult",
     exampleSentence: "Don't worry if you struggle at first; keep trying!",
     pronunciationHint: "STRUG-ul",
+    kkPronunciation: "ˋstrʌgəl",
     difficulty: "easy"
   },
   {
@@ -140,6 +153,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "to succeed in doing something",
     exampleSentence: "I feel great when I accomplish my daily goals.",
     pronunciationHint: "uh-KOM-plish",
+    kkPronunciation: "əˋkɑmplɪʃ",
     difficulty: "medium"
   },
   {
@@ -150,6 +164,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "having a strong desire to be successful",
     exampleSentence: "She has ambitious plans for her future.",
     pronunciationHint: "am-BISH-us",
+    kkPronunciation: "æmˋbɪʃəs",
     difficulty: "medium"
   },
   {
@@ -160,6 +175,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "an advantage or good result from something",
     exampleSentence: "Reading every day has many benefits for your brain.",
     pronunciationHint: "BEN-e-fit",
+    kkPronunciation: "ˋbɛnəfɪt",
     difficulty: "easy"
   },
   {
@@ -170,6 +186,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "a promise to do something or stay dedicated",
     exampleSentence: "Learning a language requires daily commitment.",
     pronunciationHint: "kuh-MIT-ment",
+    kkPronunciation: "kəˋmɪtmənt",
     difficulty: "medium"
   },
   {
@@ -180,6 +197,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "wanting to know or learn about something",
     exampleSentence: "I'm curious about how native speakers use this word.",
     pronunciationHint: "KYOOR-ee-us",
+    kkPronunciation: "ˋkjʊriəs",
     difficulty: "easy"
   },
   {
@@ -190,6 +208,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "the ability to control yourself and work hard",
     exampleSentence: "Discipline is key to mastering any skill.",
     pronunciationHint: "DIS-uh-plin",
+    kkPronunciation: "ˋdɪsəplɪn",
     difficulty: "medium"
   },
   {
@@ -200,6 +219,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "working well without wasting time or energy",
     exampleSentence: "Using flashcards is an efficient way to learn vocabulary.",
     pronunciationHint: "i-FISH-ent",
+    kkPronunciation: "ɪˋfɪʃənt",
     difficulty: "medium"
   },
   {
@@ -210,6 +230,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "to direct your attention to one thing",
     exampleSentence: "Focus on one task at a time for better results.",
     pronunciationHint: "FOH-kus",
+    kkPronunciation: "ˋfokəs",
     difficulty: "easy"
   },
   {
@@ -220,6 +241,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "feeling thankful for something",
     exampleSentence: "I'm grateful for the opportunity to learn English.",
     pronunciationHint: "GRAYT-ful",
+    kkPronunciation: "ˋgretfəl",
     difficulty: "easy"
   },
   {
@@ -230,6 +252,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "something you do regularly, often without thinking",
     exampleSentence: "Studying for 15 minutes daily is a great habit.",
     pronunciationHint: "HAB-it",
+    kkPronunciation: "ˋhæbɪt",
     difficulty: "easy"
   },
   {
@@ -240,6 +263,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "to make someone want to do something creative",
     exampleSentence: "Her story inspired me to never give up.",
     pronunciationHint: "in-SPYER",
+    kkPronunciation: "ɪnˋspaɪr",
     difficulty: "medium"
   },
   {
@@ -250,6 +274,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "a long process of personal change and development",
     exampleSentence: "Learning English is a journey, not a race.",
     pronunciationHint: "JUR-nee",
+    kkPronunciation: "ˋdʒɝnɪ",
     difficulty: "easy"
   },
   {
@@ -260,6 +285,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "information and understanding gained through experience",
     exampleSentence: "Reading books expands your knowledge.",
     pronunciationHint: "NOL-ij",
+    kkPronunciation: "ˋnɑlɪdʒ",
     difficulty: "easy"
   },
   {
@@ -270,6 +296,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "to give someone a reason to do something",
     exampleSentence: "Setting small goals helps motivate me to keep learning.",
     pronunciationHint: "MOH-tuh-vayt",
+    kkPronunciation: "ˋmotəvet",
     difficulty: "medium"
   },
   {
@@ -280,6 +307,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "to successfully deal with a problem or difficulty",
     exampleSentence: "You can overcome any challenge with persistence.",
     pronunciationHint: "oh-ver-KUM",
+    kkPronunciation: "ˏovɚˋkʌm",
     difficulty: "easy"
   },
   {
@@ -290,6 +318,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "able to wait calmly without getting annoyed",
     exampleSentence: "Be patient with yourself while learning.",
     pronunciationHint: "PAY-shunt",
+    kkPronunciation: "ˋpeʃənt",
     difficulty: "easy"
   },
   {
@@ -300,6 +329,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "how good or bad something is",
     exampleSentence: "Focus on quality over quantity when studying.",
     pronunciationHint: "KWOL-i-tee",
+    kkPronunciation: "ˋkwɑlətɪ",
     difficulty: "easy"
   },
   {
@@ -310,6 +340,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "able to recover quickly from difficulties",
     exampleSentence: "Resilient learners never give up after mistakes.",
     pronunciationHint: "ri-ZIL-yunt",
+    kkPronunciation: "rɪˋzɪljənt",
     difficulty: "hard"
   },
   {
@@ -320,6 +351,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "a plan for achieving a goal",
     exampleSentence: "Having a study strategy makes learning more effective.",
     pronunciationHint: "STRAT-uh-jee",
+    kkPronunciation: "ˋstrætədʒɪ",
     difficulty: "medium"
   },
   {
@@ -330,6 +362,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "to change something completely",
     exampleSentence: "Daily practice can transform your English skills.",
     pronunciationHint: "trans-FORM",
+    kkPronunciation: "trænsˋfɔrm",
     difficulty: "medium"
   },
   {
@@ -340,6 +373,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "being the only one of its kind; special",
     exampleSentence: "Everyone has a unique way of learning.",
     pronunciationHint: "yoo-NEEK",
+    kkPronunciation: "juˋnik",
     difficulty: "easy"
   },
   {
@@ -350,6 +384,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "to consider something important",
     exampleSentence: "I value every opportunity to practice speaking.",
     pronunciationHint: "VAL-yoo",
+    kkPronunciation: "ˋvælju",
     difficulty: "easy"
   },
   {
@@ -360,6 +395,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "ready to do something; not forced",
     exampleSentence: "Are you willing to try speaking in public?",
     pronunciationHint: "WIL-ing",
+    kkPronunciation: "ˋwɪlɪŋ",
     difficulty: "easy"
   },
   {
@@ -370,6 +406,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "to change to suit a new situation",
     exampleSentence: "You need to adapt your study methods over time.",
     pronunciationHint: "uh-DAPT",
+    kkPronunciation: "əˋdæpt",
     difficulty: "easy"
   },
   {
@@ -380,6 +417,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "extremely clever or excellent",
     exampleSentence: "That's a brilliant idea for learning vocabulary!",
     pronunciationHint: "BRIL-yunt",
+    kkPronunciation: "ˋbrɪljənt",
     difficulty: "easy"
   },
   {
@@ -390,6 +428,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "having the ability to do something",
     exampleSentence: "You are capable of learning any language.",
     pronunciationHint: "KAY-puh-bul",
+    kkPronunciation: "ˋkepəbəl",
     difficulty: "easy"
   },
   {
@@ -400,6 +439,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "giving a lot of time and effort to something",
     exampleSentence: "She is dedicated to improving her English.",
     pronunciationHint: "DED-i-kay-tid",
+    kkPronunciation: "ˋdɛdɪketɪd",
     difficulty: "medium"
   },
   {
@@ -410,6 +450,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "wanting very much to do something",
     exampleSentence: "I'm eager to learn new words today!",
     pronunciationHint: "EE-ger",
+    kkPronunciation: "ˋigɚ",
     difficulty: "easy"
   },
   {
@@ -420,6 +461,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "extremely interesting",
     exampleSentence: "The history of English is fascinating.",
     pronunciationHint: "FAS-i-ney-ting",
+    kkPronunciation: "ˋfæsənetɪŋ",
     difficulty: "medium"
   },
   {
@@ -430,6 +472,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "real and sincere, not fake",
     exampleSentence: "She has a genuine interest in learning languages.",
     pronunciationHint: "JEN-yoo-in",
+    kkPronunciation: "ˋdʒɛnjuɪn",
     difficulty: "medium"
   },
   {
@@ -440,6 +483,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "a state of agreement and peaceful coexistence",
     exampleSentence: "Finding harmony between study and rest is important.",
     pronunciationHint: "HAR-muh-nee",
+    kkPronunciation: "ˋhɑrmənɪ",
     difficulty: "medium"
   },
   {
@@ -450,6 +494,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "to make something clear or easy to understand",
     exampleSentence: "Good examples can illuminate complex grammar rules.",
     pronunciationHint: "i-LOO-mi-neyt",
+    kkPronunciation: "ɪˋlumənet",
     difficulty: "hard"
   },
   {
@@ -460,6 +505,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "feeling or expressing great happiness",
     exampleSentence: "She felt jubilant after passing her English exam.",
     pronunciationHint: "JOO-bi-lunt",
+    kkPronunciation: "ˋdʒubələnt",
     difficulty: "hard"
   },
   {
@@ -470,6 +516,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "having a strong interest or sharp ability",
     exampleSentence: "He has a keen eye for detail in writing.",
     pronunciationHint: "KEEN",
+    kkPronunciation: "kin",
     difficulty: "easy"
   },
   {
@@ -480,6 +527,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "to jump or make a sudden big improvement",
     exampleSentence: "Her English took a big leap after six months of practice.",
     pronunciationHint: "LEEP",
+    kkPronunciation: "lip",
     difficulty: "easy"
   },
   {
@@ -490,6 +538,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "an important event or achievement",
     exampleSentence: "Learning 1000 words is a major milestone.",
     pronunciationHint: "MYL-stohn",
+    kkPronunciation: "ˋmaɪlston",
     difficulty: "medium"
   },
   {
@@ -500,6 +549,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "to care for and help something grow",
     exampleSentence: "Nurture your language skills with daily practice.",
     pronunciationHint: "NUR-cher",
+    kkPronunciation: "ˋnɝtʃɚ",
     difficulty: "medium"
   },
   {
@@ -510,6 +560,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "something that blocks your way or makes progress difficult",
     exampleSentence: "Don't see mistakes as obstacles; see them as lessons.",
     pronunciationHint: "OB-stuh-kul",
+    kkPronunciation: "ˋɑbstəkəl",
     difficulty: "medium"
   },
   {
@@ -520,6 +571,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "to keep trying despite difficulties",
     exampleSentence: "If you persevere, you will master English eventually.",
     pronunciationHint: "per-se-VEER",
+    kkPronunciation: "ˏpɝsəˋvɪr",
     difficulty: "hard"
   },
   {
@@ -530,6 +582,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "a long search for something important",
     exampleSentence: "Learning English is a lifelong quest for knowledge.",
     pronunciationHint: "KWEST",
+    kkPronunciation: "kwɛst",
     difficulty: "easy"
   },
   {
@@ -540,6 +593,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "giving satisfaction or pleasure",
     exampleSentence: "Learning a language is challenging but very rewarding.",
     pronunciationHint: "ri-WOR-ding",
+    kkPronunciation: "rɪˋwɔrdɪŋ",
     difficulty: "medium"
   },
   {
@@ -550,6 +604,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "firmly loyal and unwavering",
     exampleSentence: "Stay steadfast in your learning journey.",
     pronunciationHint: "STED-fast",
+    kkPronunciation: "ˋstɛdfæst",
     difficulty: "hard"
   },
   {
@@ -560,6 +615,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "to grow and develop successfully",
     exampleSentence: "With good habits, your skills will thrive.",
     pronunciationHint: "THRYV",
+    kkPronunciation: "θraɪv",
     difficulty: "medium"
   },
   {
@@ -570,6 +626,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "to maintain or support a principle",
     exampleSentence: "Uphold your commitment to daily practice.",
     pronunciationHint: "up-HOHLD",
+    kkPronunciation: "ʌpˋhold",
     difficulty: "hard"
   },
   {
@@ -580,6 +637,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "bright and clear; producing strong images in the mind",
     exampleSentence: "Vivid stories are easier to remember.",
     pronunciationHint: "VIV-id",
+    kkPronunciation: "ˋvɪvɪd",
     difficulty: "medium"
   },
   {
@@ -590,6 +648,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "to walk around without a fixed destination",
     exampleSentence: "Let your mind wander while you learn new words.",
     pronunciationHint: "WAN-der",
+    kkPronunciation: "ˋwɑndɚ",
     difficulty: "easy"
   },
   {
@@ -600,6 +659,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "to produce a result or give way",
     exampleSentence: "Hard work will yield great results over time.",
     pronunciationHint: "YEELD",
+    kkPronunciation: "jild",
     difficulty: "medium"
   },
   {
@@ -610,6 +670,7 @@ export const vocabularyList: VocabularyItem[] = [
     englishMeaning: "great energy and enthusiasm for something",
     exampleSentence: "Approach your studies with zeal and curiosity.",
     pronunciationHint: "ZEEL",
+    kkPronunciation: "zil",
     difficulty: "hard"
   }
 ];
