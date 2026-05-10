@@ -6,6 +6,26 @@ export interface ChangelogEntry {
 
 export const changelog: ChangelogEntry[] = [
   {
+    version: "v20260503.4",
+    date: "2026-05-03",
+    changes: {
+      en: [
+        "🏷️ Show 'KK' label before KK pronunciation so users know the notation system",
+        "🐞 Fix 4 places that hardcoded /hint/ format and bypassed KK display (Daily / Quiz / Review / Fill-in-Blank)",
+        "🐞 Fix infinite recursion in pronunciation fallback (regression caught twice — same trap as v20260503.2)",
+        "✏️ Rename 'innoblue 主人' → 'innoblue 站長' (site owner)",
+        "🧹 Add .omc/ and AGENTS.md to .gitignore (avoid committing agent ephemeral state — caught by codex review)"
+      ],
+      zh: [
+        "🏷️ KK 音標前面加上「KK」標籤，明確標示音標系統",
+        "🐞 修正 4 個畫面位置硬編碼 /hint/ 格式，未顯示 KK 音標（每日 / 選擇題 / 複習 / 填空）",
+        "🐞 修正音標 fallback 無窮遞迴（v20260503.2 修過的同樣陷阱再度發生）",
+        "✏️ 「innoblue 主人」改為「innoblue 站長」",
+        "🧹 .gitignore 加入 .omc/ 和 AGENTS.md（避免 commit agent 暫存狀態 — 由 codex review 抓到）"
+      ]
+    }
+  },
+  {
     version: "v20260503.3",
     date: "2026-05-03",
     changes: {

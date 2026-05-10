@@ -22,3 +22,8 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# AI agent ephemeral state (Claude Code, Codex, OMC sessions)
+.omc/
+AGENTS.md
+.claude-mem/

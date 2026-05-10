@@ -150,7 +150,7 @@ function createProgressBar(percent: number, style?: string): HTMLElement {
 
 function formatPronunciation(word: VocabularyItem): string {
   if (word.kkPronunciation && word.kkPronunciation.trim()) {
-    return '[' + word.kkPronunciation + ']';
+    return 'KK [' + word.kkPronunciation + ']';
   }
   return '/' + word.pronunciationHint + '/';
 }

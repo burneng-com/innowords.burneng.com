@@ -358,7 +358,7 @@ export const translations: Record<Language, Translations> = {
     exportFileName: "innowords-progress.csv",
 
     acronymTitle: "縮寫學習",
-    acronymSubtitle: "innoblue 主人分享的英文縮寫",
+    acronymSubtitle: "innoblue 站長分享的英文縮寫",
     acronymFullName: "英文全名",
     acronymChinese: "中文意思",
     acronymMemoryTip: "簡單記法",
