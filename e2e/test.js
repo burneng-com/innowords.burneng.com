@@ -136,6 +136,42 @@ function testVersionUtilities() {
   if (original) localStorage.setItem('innowords_version', original);
 }
 
+// Test: regression - ensure no render function bypasses formatPronunciation helper
+function testNoHardcodedPronunciationHint() {
+  const fs = require('fs');
+  const path = require('path');
+  const appSrc = fs.readFileSync(path.join(__dirname, '..', 'src', 'components', 'App.ts'), 'utf8');
+
+  // Match hardcoded patterns that bypass formatPronunciation (e.g., '/' + word.pronunciationHint + '/')
+  // Only the formatPronunciation helper itself may reference word.pronunciationHint directly.
+  const lines = appSrc.split('\n');
+  const offending = [];
+  let inHelper = false;
+  let braceDepth = 0;
+  lines.forEach((line, i) => {
+    if (line.includes('function formatPronunciation')) {
+      inHelper = true;
+      braceDepth = 0;
+    }
+    if (inHelper) {
+      braceDepth += (line.match(/\{/g) || []).length;
+      braceDepth -= (line.match(/\}/g) || []).length;
+      if (braceDepth === 0 && line.includes('}')) {
+        inHelper = false;
+        return;
+      }
+      return; // skip checking inside helper
+    }
+    if (line.includes('word.pronunciationHint')) {
+      offending.push(`Line ${i + 1}: ${line.trim()}`);
+    }
+  });
+
+  assert(offending.length === 0,
+    `Render functions must use formatPronunciation(word), not word.pronunciationHint directly.\n` +
+    `Offending lines:\n  ${offending.join('\n  ')}`);
+}
+
 // Test 7a: KK pronunciation coverage
 function testKKPronunciation() {
   const { vocabularyList } = require('../src/data/vocabulary');
@@ -207,6 +243,7 @@ test('Daily words are deterministic for same date', testDailyWordsDeterminism);
 test('Changelog has valid entries', testChangelog);
 test('Version bump utility works correctly', testVersionUtilities);
 test('All vocabulary words have valid kkPronunciation', testKKPronunciation);
+test('Render functions use formatPronunciation helper (no hardcoded fallback)', testNoHardcodedPronunciationHint);
 test('CSV import validates input and rejects bad data', testCSVValidation);
 test('CSV export/import round-trip works', testCSVExportImport);
 

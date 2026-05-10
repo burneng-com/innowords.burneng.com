@@ -6,6 +6,22 @@ export interface ChangelogEntry {
 
 export const changelog: ChangelogEntry[] = [
   {
+    version: "v20260503.5",
+    date: "2026-05-03",
+    changes: {
+      en: [
+        "🐞 Fix Quiz/Daily/Review/Fill-in-Blank really showing KK pronunciation (4 hardcoded sites bypassed the helper after refactor)",
+        "🛡️ Use template literal in formatPronunciation fallback to be replace_all-safe",
+        "🧪 Add regression test: render functions must use formatPronunciation helper, not raw word.pronunciationHint"
+      ],
+      zh: [
+        "🐞 修正問答／每日／複習／填空 4 個位置確實顯示 KK 音標（重構後 hardcode 繞過了 helper）",
+        "🛡️ formatPronunciation fallback 改用 template literal，避免被 replace_all 誤傷",
+        "🧪 新增回歸測試：渲染函數必須使用 formatPronunciation helper，不能直接 word.pronunciationHint"
+      ]
+    }
+  },
+  {
     version: "v20260503.4",
     date: "2026-05-03",
     changes: {

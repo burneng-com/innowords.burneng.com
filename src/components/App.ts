@@ -152,7 +152,8 @@ function formatPronunciation(word: VocabularyItem): string {
   if (word.kkPronunciation && word.kkPronunciation.trim()) {
     return 'KK [' + word.kkPronunciation + ']';
   }
-  return '/' + word.pronunciationHint + '/';
+  // Template literal form — keeps this fallback safe from string-based replace_all on '/' + word.pronunciationHint + '/'
+  return `/${word.pronunciationHint}/`;
 }
 
 function settingsIconSvg(): SVGElement {
@@ -449,7 +450,7 @@ class InnoWordsApp {
     const top = el('div', { style: 'display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px;' });
     const left = el('div');
     left.appendChild(el('h3', { text: word.word, style: 'color: var(--color-primary);' }));
-    left.appendChild(el('span', { text: '/' + word.pronunciationHint + '/ • ' + word.partOfSpeech, style: 'font-size:0.8rem; color: var(--color-text-light);' }));
+    left.appendChild(el('span', { text: formatPronunciation(word) + ' • ' + word.partOfSpeech, style: 'font-size:0.8rem; color: var(--color-text-light);' }));
     const diff = el('span', { text: this.difficultyLabel(word.difficulty), style: 'font-size:0.7rem; padding:4px 8px; border-radius:12px; color: white; font-weight:600; background:' + this.difficultyBg(word.difficulty) });
     top.appendChild(left); top.appendChild(diff);
     card.appendChild(top);
@@ -589,7 +590,7 @@ class InnoWordsApp {
     const wordCard = el('div', { className: 'card text-center', style: 'padding: 32px 20px; margin-bottom:20px;' });
     wordCard.appendChild(el('p', { text: t.quizQuestion, style: 'font-size:0.85rem; color: var(--color-text-light); margin-bottom:8px;' }));
     wordCard.appendChild(el('h2', { text: word.word, style: 'font-size:2rem; color: var(--color-primary);' }));
-    wordCard.appendChild(el('p', { text: '/' + word.pronunciationHint + '/ • ' + word.partOfSpeech, style: 'font-size:0.85rem; color: var(--color-text-light); margin-top:4px;' }));
+    wordCard.appendChild(el('p', { text: formatPronunciation(word) + ' • ' + word.partOfSpeech, style: 'font-size:0.85rem; color: var(--color-text-light); margin-top:4px;' }));
     section.appendChild(wordCard);
 
     const optionsContainer = el('div', { style: 'display:flex; flex-direction:column; gap:10px;' });
@@ -772,7 +773,7 @@ class InnoWordsApp {
         const row = el('div', { style: 'display:flex; justify-content:space-between; align-items:flex-start;' });
         const left = el('div', { style: 'flex:1;' });
         left.appendChild(el('h3', { text: word.word, style: 'color: var(--color-primary); margin-bottom:4px;' }));
-        left.appendChild(el('p', { text: '/' + word.pronunciationHint + '/ • ' + word.partOfSpeech, style: 'font-size:0.8rem; color: var(--color-text-light); margin-bottom:6px;' }));
+        left.appendChild(el('p', { text: formatPronunciation(word) + ' • ' + word.partOfSpeech, style: 'font-size:0.8rem; color: var(--color-text-light); margin-bottom:6px;' }));
         left.appendChild(el('p', { text: word.chineseMeaning, style: 'font-weight:600; margin-bottom:4px;' }));
         left.appendChild(el('p', { text: word.englishMeaning, style: 'font-size:0.85rem; color: var(--color-text-light); margin-bottom:8px;' }));
         left.appendChild(el('div', { text: '💬 ' + word.exampleSentence, style: 'background: rgba(79, 109, 255, 0.06); padding:8px 10px; border-radius:6px; font-size:0.85rem; font-style:italic;' }));
@@ -834,7 +835,7 @@ class InnoWordsApp {
     }
     card.appendChild(sentence);
 
-    const hint = el('p', { className: 'hidden', text: '💡 ' + word.chineseMeaning + ' (/' + word.pronunciationHint + '/)', style: 'font-size:0.85rem; color: var(--color-text-light); font-style: italic;', attrs: { id: 'fill-hint' } });
+    const hint = el('p', { className: 'hidden', text: '💡 ' + word.chineseMeaning + ' (' + formatPronunciation(word) + ')', style: 'font-size:0.85rem; color: var(--color-text-light); font-style: italic;', attrs: { id: 'fill-hint' } });
     card.appendChild(hint);
     wrap.appendChild(card);
 
