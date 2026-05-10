@@ -162,6 +162,12 @@
       "accessCount": 2,
       "lastAccessed": 1778406442786,
       "type": "file"
+    },
+    {
+      "path": "src/data/changelog.ts",
+      "accessCount": 2,
+      "lastAccessed": 1778420226418,
+      "type": "file"
     }
   ],
   "userDirectives": []

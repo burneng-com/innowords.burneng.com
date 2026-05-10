@@ -6,6 +6,34 @@ export interface ChangelogEntry {
 
 export const changelog: ChangelogEntry[] = [
   {
+    version: "v20260503.2",
+    date: "2026-05-03",
+    changes: {
+      en: [
+        "✨ KK phonetic notation (Taiwan standard) for all 60 vocabulary words",
+        "📌 Acronym learning section in Review tab: POC, MVP, FRS, PRD, POI",
+        "🔒 Stricter CSV import validation with specific error messages",
+        "🔧 Type safety: introduce Difficulty literal union type",
+        "♻️ Refactor: extract createBadge and createProgressBar helpers",
+        "♻️ Refactor: split long render functions for better maintainability",
+        "🐞 Fix infinite recursion bug in pronunciation formatter (caught by QA)",
+        "🐞 Fix CSV import: properly strip quoted values on parse",
+        "🧪 Expand e2e test suite to 9 tests (added KK + CSV validation coverage)"
+      ],
+      zh: [
+        "✨ 全部 60 個單字加入 KK 音標（台灣標準）",
+        "📌 Review 頁面新增縮寫學習區塊：POC、MVP、FRS、PRD、POI",
+        "🔒 CSV 匯入加入嚴格驗證，顯示具體錯誤訊息",
+        "🔧 型別安全：新增 Difficulty literal union 型別",
+        "♻️ 重構：提取 createBadge 和 createProgressBar 輔助函數",
+        "♻️ 重構：拆分過長的渲染函數，提升可維護性",
+        "🐞 修正音標 fallback 無窮遞迴（由 QA 抓到）",
+        "🐞 修正 CSV 匯入：正確處理帶引號的數值",
+        "🧪 e2e 測試擴充至 9 項（新增 KK 覆蓋率與 CSV 驗證）"
+      ]
+    }
+  },
+  {
     version: "v20260503.1",
     date: "2026-05-03",
     changes: {
